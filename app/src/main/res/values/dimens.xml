@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fragment_margin">8dp</dimen>
+    <dimen name="padding_button">4dp</dimen>
+    <dimen name="padding_widget">8dp</dimen>
+    <dimen name="text_margin">8dp</dimen>
+    <dimen name="padding_row">2dp</dimen>
+    <dimen name="text_size_cell">12sp</dimen>
+    <dimen name="row_height">48dp</dimen>
+</resources>

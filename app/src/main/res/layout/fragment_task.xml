@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:minHeight="@dimen/row_height"
+    android:background="@drawable/rounded_cell"
+    android:gravity="center_vertical"
+    >
+
+    <TextView
+        android:id="@+id/taskTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="@dimen/text_size_cell"
+        />
+
+</LinearLayout>

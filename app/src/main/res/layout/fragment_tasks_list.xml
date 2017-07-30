@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tasksLL"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorListBackground"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_button"
+    tools:context="com.tyco.tw.fragments.TasksFragment"
+    >
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/addTaskTIL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_button"
+        android:background="@drawable/rounded_button"
+        android:paddingBottom="@dimen/padding_widget"
+        android:paddingLeft="@dimen/padding_button"
+        android:paddingRight="@dimen/padding_button"
+        android:paddingTop="@dimen/padding_widget"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false">
+
+        <EditText
+            android:id="@+id/addTaskET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/ic_add_black_24dp"
+            android:drawablePadding="@dimen/padding_button"
+            android:hint="@string/hint_new_task"
+            android:maxLines="2"
+            android:textSize="@dimen/text_size_cell" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/taskList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/fragment_tasks">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
