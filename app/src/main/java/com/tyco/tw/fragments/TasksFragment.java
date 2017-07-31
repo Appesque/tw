@@ -28,6 +28,8 @@ import com.tyco.tw.network.RetrofitError;
 import com.tyco.tw.network.TWApiService;
 import com.tyco.tw.utils.SimpleDividerDecoration;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,6 +44,7 @@ public class TasksFragment extends Fragment implements AddTaskCallback, TasksCal
     private static final String TAG = TasksFragment.class.getSimpleName();
 
     private OnListFragmentInteractionListener mListener;
+    private List<Task> mTasks;
 
     @BindView(R.id.taskList)
     RecyclerView _tasksRV;
@@ -85,7 +88,8 @@ public class TasksFragment extends Fragment implements AddTaskCallback, TasksCal
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         _tasksRV.setLayoutManager(layoutManager);
         _tasksRV.addItemDecoration(new SimpleDividerDecoration(view.getContext()));
-        _tasksRV.setAdapter(new TasksRecyclerViewAdapter(TasksController.getTasks(), mListener));
+        mTasks = TasksController.getTasks();
+        _tasksRV.setAdapter(new TasksRecyclerViewAdapter(mTasks, mListener));
 
         _addTaskET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -123,7 +127,14 @@ public class TasksFragment extends Fragment implements AddTaskCallback, TasksCal
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_done:
-                processAddTask();
+                if (_addTaskET.getText().length() == 0) {
+                    // remove Menu Action
+                    _tasksRV.requestFocus();
+                    getActivity().invalidateOptionsMenu();
+                } else {
+                    // add task
+                    processAddTask();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -194,7 +205,8 @@ public class TasksFragment extends Fragment implements AddTaskCallback, TasksCal
     @Override
     public void tasksSuccess(Tasks tasks) {
         TasksController.setTasks(tasks);
-        _tasksRV.setAdapter(new TasksRecyclerViewAdapter(TasksController.getTasks(), mListener));
+        mTasks.clear();
+        mTasks.addAll(TasksController.getTasks());
         _tasksRV.getAdapter().notifyDataSetChanged();
     }
 }
